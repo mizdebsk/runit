@@ -23,7 +23,6 @@
   <dependencySets>
     <dependencySet>
       <unpack>false</unpack>
-      <outputFileNameMapping>java-deptools-native-${artifact.artifactId}.jar</outputFileNameMapping>
     </dependencySet>
   </dependencySets>
 </assembly>
