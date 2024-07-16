@@ -3,3 +3,6 @@ RUN microdnf -y install git-core maven rpm-libs
 COPY . /src
 WORKDIR /src
 RUN mvn -B clean verify
+
+FROM quay.io/fedora-java/javapackages-validator:2
+COPY --from=builder /src/runit-validator/target/lib/* /opt/javapackages-validator/dependency
