@@ -1,7 +1,5 @@
 package io.kojan.runit.api;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -17,11 +15,7 @@ class PackageTestExtension implements TestTemplateInvocationContextProvider {
 
     @Override
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
-        List<TestTemplateInvocationContext> contexts = new ArrayList<>();
         GlobalContext globalContext = GlobalContextProvider.getContext();
-        for (PackageContext packageContext : globalContext.getPackageSubcontexts()) {
-            contexts.add(new PackageTestContext(packageContext));
-        }
-        return contexts.stream();
+        return globalContext.getPackageSubcontexts().map(PackageTestContext::new);
     }
 }

@@ -1,6 +1,6 @@
 package io.kojan.runit.api;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import io.kojan.javadeptools.rpm.RpmInfo;
 import io.kojan.javadeptools.rpm.RpmPackage;
@@ -12,5 +12,5 @@ public interface PackageContext extends GlobalContext {
         return getRpmPackage().getInfo();
     }
 
-    List<FileContext> getFileSubcontexts();
+    Stream<FileContext> getFileSubcontexts();
 }
