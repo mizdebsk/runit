@@ -20,6 +20,15 @@ import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 
 class DiscoveryServiceImpl implements DiscoveryService {
+
+    private final String namespace;
+    private final String classNamePattern;
+
+    public DiscoveryServiceImpl(String namespace, String classNamePattern) {
+        this.namespace = namespace;
+        this.classNamePattern = classNamePattern;
+    }
+
     private void configureLogging(Level level) {
         Logger rootLogger = LogManager.getLogManager().getLogger("");
         rootLogger.setLevel(level);
@@ -35,8 +44,8 @@ class DiscoveryServiceImpl implements DiscoveryService {
         configureLogging(Level.FINE);
         List<TestCase> tests = new ArrayList<>();
         Launcher launcher = LauncherFactory.create();
-        LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request().selectors(selectPackage("tests"))
-                .filters(includeClassNamePatterns(".*Check")).build();
+        LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request().selectors(selectPackage(namespace))
+                .filters(includeClassNamePatterns(classNamePattern)).build();
         TestPlan testPlan = launcher.discover(request);
         for (TestIdentifier id : testPlan.getChildren(testPlan.getRoots().iterator().next())) {
             TestSource ts = id.getSource().get();
