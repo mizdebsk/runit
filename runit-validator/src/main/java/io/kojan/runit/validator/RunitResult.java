@@ -99,10 +99,22 @@ public class RunitResult implements TestExecutionListener {
         LogEntryBuilder log = new LogEntryBuilder(event);
 
         String dn = id.getDisplayName();
-        if (dn.startsWith("[")) {
-            dn = stack.peek().getDisplayName() + " " + dn;
+        if (dn.startsWith("[") && dn.endsWith("]")) {
+            log.append(stack.peek().getDisplayName());
+            log.append(" [");
+            int i = dn.indexOf('@');
+            int j = dn.length() - 1;
+            if (i > 0) {
+                log.append(Decorated.rpm(dn.substring(1, i)));
+                log.append('@');
+                log.append(Decorated.outer(dn.substring(i + 1, j)));
+            } else {
+                log.append(Decorated.rpm(dn.substring(1, j)));
+            }
+            log.append(']');
+        } else {
+            log.append(dn);
         }
-        log.append(dn);
 
         if (r.getThrowable().isPresent()) {
             log.append(" ");
