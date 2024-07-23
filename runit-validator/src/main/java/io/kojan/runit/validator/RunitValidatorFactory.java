@@ -19,6 +19,9 @@ public class RunitValidatorFactory implements ValidatorFactory {
         for (TestCase test : tests) {
             validators.add(new RunitValidator(test));
         }
+        if (validators.isEmpty()) {
+            validators.add(new NopValidator());
+        }
         return validators;
     }
 }
