@@ -16,10 +16,14 @@ class DecoratedDescription extends BaseDescription {
 
     @Override
     public Description appendValue(Object value) {
-        sb = new StringBuilder();
-        super.appendValue(value);
-        log.append(decorator.decorate(sb.toString()));
-        sb = null;
+        if (sb == null) {
+            sb = new StringBuilder();
+            super.appendValue(value);
+            log.append(decorator.decorate(sb.toString()));
+            sb = null;
+        } else {
+            super.appendValue(value);
+        }
         return this;
     }
 
