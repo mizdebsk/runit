@@ -13,5 +13,5 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @TestTemplate
 @ExtendWith(FileTestExtension.class)
 public @interface FileTest {
-
+    String value() default "";
 }

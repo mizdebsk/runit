@@ -1,5 +1,8 @@
 package io.kojan.runit.validator;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -14,6 +17,7 @@ import org.junit.platform.engine.TestExecutionResult.Status;
 import org.junit.platform.launcher.TestExecutionListener;
 import org.junit.platform.launcher.TestIdentifier;
 import org.junit.platform.launcher.TestPlan;
+import org.opentest4j.TestAbortedException;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
@@ -130,8 +134,15 @@ public class RunitResult implements TestExecutionListener {
                 log.append(" but: ");
                 DecoratedDescription actDescr = new DecoratedDescription(log, Decorated::actual);
                 e.getMatcher().describeMismatch(e.getValue(), actDescr);
+            } else if (t instanceof TestAbortedException) {
+                log.append(Decorated.plain(t.getMessage()));
             } else {
-                log.append(Decorated.plain(t.toString()));
+                try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
+                    t.printStackTrace(pw);
+                    log.append(Decorated.plain(sw.toString()));
+                } catch (IOException e) {
+                    log.append(Decorated.plain(t.toString()));
+                }
             }
         }
 

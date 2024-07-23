@@ -20,6 +20,7 @@ class ArchiveIterator implements Iterator<CpioArchiveEntry> {
 
     private final RpmArchiveInputStream stream;
     private CpioArchiveEntry next;
+    private boolean closed;
 
     public ArchiveIterator(RpmArchiveInputStream stream) {
         this.stream = stream;
@@ -28,11 +29,15 @@ class ArchiveIterator implements Iterator<CpioArchiveEntry> {
     @Override
     public boolean hasNext() {
         try {
+            if (closed) {
+                return false;
+            }
             if (next == null) {
                 next = stream.getNextEntry();
             }
             if (next == null) {
                 stream.close();
+                closed = true;
             }
             return next != null;
         } catch (IOException e) {

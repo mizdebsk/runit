@@ -13,5 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @TestTemplate
 @ExtendWith(PackageTestExtension.class)
 public @interface PackageTest {
+    String value() default "";
 
+    PackageType type() default PackageType.BOTH;
 }
