@@ -12,7 +12,7 @@ public class SimpleValidatorTest extends AbstractValidatorTest {
         copyArtifact("simple-1.2.3-1.fc22.src.rpm");
         copyArtifact("simple-1.2.3-1.fc22.x86_64.rpm");
 
-        setupDiscovery("mytests.simple");
+        setupDiscovery("mytests.simple", ".*Check");
         runJPV(0);
 
         assertFiles("results.yaml", "results/SimpleCheck.html", "results/SimpleCheck.log");

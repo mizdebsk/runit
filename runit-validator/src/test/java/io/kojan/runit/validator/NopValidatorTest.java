@@ -11,7 +11,7 @@ public class NopValidatorTest extends AbstractValidatorTest {
 
         copyArtifact("simple-1.2.3-1.fc22.x86_64.rpm");
 
-        setupDiscovery("mytests.nop");
+        setupDiscovery("mytests.nop", ".*Check");
         runJPV(0);
 
         assertFiles("results.yaml", "results/.html", "results/.log");

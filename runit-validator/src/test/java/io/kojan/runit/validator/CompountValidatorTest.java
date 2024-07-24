@@ -14,7 +14,7 @@ public class CompountValidatorTest extends AbstractValidatorTest {
         copyArtifact("compound-sub-42-1.noarch.rpm");
         copyArtifact("other-42-1.noarch.rpm");
 
-        setupDiscovery("mytests.compound");
+        setupDiscovery("mytests.compound", ".*Check");
         runJPV(0);
 
         assertFiles("results.yaml", "results/TST.html", "results/TST.log");

@@ -28,6 +28,7 @@ abstract class AbstractValidatorTest {
 
     Path resourcesDir = Paths.get("src/test/resources");
     Main main;
+    List<String> args;
 
     void copyArtifact(String name) throws IOException {
         Files.copy(resourcesDir.resolve(name), artifactsDir.resolve(name));
@@ -46,15 +47,15 @@ abstract class AbstractValidatorTest {
         tmtTestData = createDir("TMT_TEST_DATA");
         artifactsDir = createDir("TEST_ARTIFACTS");
         main = MainTmt.create(tmtTestData, tmtTree);
+        args = new ArrayList<>();
+        args.add("-x");
     }
 
-    void setupDiscovery(String namespace) {
-        TestValidatorFactory.ds = new TestRunnerFactory().createDiscoveryService(namespace, ".*Check");
+    void setupDiscovery(String namespace, String classNamePattern) {
+        TestValidatorFactory.ds = new TestRunnerFactory().createDiscoveryService(namespace, classNamePattern);
     }
 
     void runJPV(int expRc) throws Exception {
-        List<String> args = new ArrayList<>();
-        args.add("-x");
         args.add("-f");
         args.add(artifactsDir.toString());
         args.add(TestValidatorFactory.class.getCanonicalName());
