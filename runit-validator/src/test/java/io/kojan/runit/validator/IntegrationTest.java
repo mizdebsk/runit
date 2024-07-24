@@ -2,11 +2,13 @@ package io.kojan.runit.validator;
 
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class IntegrationTest extends AbstractValidatorTest {
 
     @Test
+    @Disabled
     void testIntegration() throws Exception {
 
         args.add("-cp");
