@@ -2,10 +2,11 @@ package io.kojan.runit.api;
 
 import java.nio.file.Path;
 
-import org.apache.commons.compress.archivers.cpio.CpioArchiveEntry;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
+
+import io.kojan.javadeptools.rpm.RpmFile;
 
 class FileTestParameterResolver extends PackageTestParameterResolver {
 
@@ -24,8 +25,8 @@ class FileTestParameterResolver extends PackageTestParameterResolver {
             return context;
         if (type.equals(Path.class))
             return context.getFilePath();
-        if (type.equals(CpioArchiveEntry.class))
-            return context.getArchiveEntry();
+        if (type.equals(RpmFile.class))
+            return context.getRpmFile();
         if (type.equals(byte[].class))
             return context.getFileContent();
         return super.resolveParameter(parameterContext, extensionContext);

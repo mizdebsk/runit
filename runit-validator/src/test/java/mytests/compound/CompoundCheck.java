@@ -1,8 +1,8 @@
 package mytests.compound;
 
-import org.apache.commons.compress.archivers.cpio.CpioArchiveEntry;
 import org.junit.jupiter.api.DisplayName;
 
+import io.kojan.javadeptools.rpm.RpmFile;
 import io.kojan.javadeptools.rpm.RpmInfo;
 import io.kojan.runit.api.FileTest;
 import io.kojan.runit.api.PackageTest;
@@ -32,11 +32,11 @@ public class CompoundCheck {
     }
 
     @FileTest(".*\\.jar")
-    void testJar(CpioArchiveEntry ent) {
+    void testJar(RpmFile ent) {
     }
 
     @FileTest("/usr/share/javadoc/(|.*)")
-    void testJavadoc(CpioArchiveEntry ent) {
+    void testJavadoc(RpmFile ent) {
     }
 
     @FileTest("dummy")

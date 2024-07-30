@@ -1,6 +1,7 @@
 package io.kojan.runit.api;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -31,12 +32,15 @@ class FileTestExtension implements TestTemplateInvocationContextProvider {
             filter = filter.and(ctx -> pattern.matcher(ctx.getFilePath().toString()).matches());
         }
 
+        boolean withContent = Arrays.asList(method.getParameterTypes()).stream()
+                .anyMatch(pt -> byte[].class.isAssignableFrom(pt));
         GlobalContext globalContext = GlobalContextProvider.getContext();
-        if (globalContext.getPackageSubcontexts().flatMap(PackageContext::getFileSubcontexts).noneMatch(filter)) {
+        if (globalContext.getPackageSubcontexts().flatMap(pkgCtx -> pkgCtx.getFileSubcontexts(false))
+                .noneMatch(filter)) {
             throw new TestAbortedException("No matching file");
         }
         return globalContext.getPackageSubcontexts() //
-                .flatMap(PackageContext::getFileSubcontexts) //
+                .flatMap(pkgCtx -> pkgCtx.getFileSubcontexts(withContent)) //
                 .filter(filter) //
                 .map(FileTestContext::new);
     }

@@ -1,22 +1,21 @@
 package io.kojan.runit.engine.ctx;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import org.apache.commons.compress.archivers.cpio.CpioArchiveEntry;
-
+import io.kojan.javadeptools.rpm.RpmFile;
 import io.kojan.runit.api.FileContext;
 import io.kojan.runit.api.PackageContext;
 
 public class FileContextImpl extends PackageContextImpl implements FileContext {
     private final Path filePath;
-    private final CpioArchiveEntry archiveEntry;
+    private final RpmFile rpmFile;
     private final byte[] content;
 
-    public FileContextImpl(PackageContext packageContext, Path filePath, CpioArchiveEntry archiveEntry,
-            byte[] content) {
+    public FileContextImpl(PackageContext packageContext, RpmFile rpmFile, byte[] content) {
         super(packageContext);
-        this.filePath = filePath;
-        this.archiveEntry = archiveEntry;
+        this.filePath = Paths.get(rpmFile.getName());
+        this.rpmFile = rpmFile;
         this.content = content;
     }
 
@@ -26,8 +25,8 @@ public class FileContextImpl extends PackageContextImpl implements FileContext {
     }
 
     @Override
-    public CpioArchiveEntry getArchiveEntry() {
-        return archiveEntry;
+    public RpmFile getRpmFile() {
+        return rpmFile;
     }
 
     @Override

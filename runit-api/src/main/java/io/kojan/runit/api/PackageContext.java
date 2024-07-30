@@ -12,5 +12,5 @@ public interface PackageContext extends GlobalContext {
         return getRpmPackage().getInfo();
     }
 
-    Stream<FileContext> getFileSubcontexts();
+    Stream<FileContext> getFileSubcontexts(boolean withContent);
 }

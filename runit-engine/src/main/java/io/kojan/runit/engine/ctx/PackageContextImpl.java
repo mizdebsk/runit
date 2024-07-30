@@ -5,12 +5,15 @@ import java.io.UncheckedIOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.apache.commons.compress.archivers.cpio.CpioArchiveEntry;
 
 import io.kojan.javadeptools.rpm.RpmArchiveInputStream;
+import io.kojan.javadeptools.rpm.RpmFile;
 import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.FileContext;
 import io.kojan.runit.api.GlobalContext;
@@ -79,27 +82,51 @@ public class PackageContextImpl extends GlobalContextImpl implements PackageCont
         return rpmPackage;
     }
 
-    private FileContext entryToFileContext(RpmArchiveInputStream stream, CpioArchiveEntry entry) {
+    private FileContext entryToFileContext(RpmArchiveInputStream stream, Map<Path, RpmFile> filesByPath,
+            CpioArchiveEntry entry) {
         try {
             Path path = Paths.get(entry.getName());
             if (path.startsWith(Paths.get("."))) {
                 path = Paths.get(".").relativize(path);
             }
             path = Paths.get("/").resolve(path);
+            RpmFile rpmFile = filesByPath.get(path);
+            if (rpmFile == null) {
+                throw new IllegalStateException("null RpmFile for " + path + "; valid are: " + filesByPath.keySet());
+            }
             byte[] content = new byte[(int) entry.getSize()];
             stream.read(content);
-            return new FileContextImpl(this, path, entry, content);
+            return new FileContextImpl(this, rpmFile, content);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
     }
 
+    private FileContext fileToFileContext(RpmFile rpmFile) {
+        return new FileContextImpl(this, rpmFile, null);
+    }
+
+    private Path rpmFilePath(RpmFile f) {
+        Path p = Paths.get(f.getName());
+        if (!p.isAbsolute()) {
+            p = Paths.get("/").resolve(p);
+        }
+        return p;
+    }
+
     @Override
-    public Stream<FileContext> getFileSubcontexts() {
+    public Stream<FileContext> getFileSubcontexts(boolean withContent) {
         try {
-            RpmArchiveInputStream stream = new RpmArchiveInputStream(rpmPackage.getPath());
-            Iterable<CpioArchiveEntry> iterable = () -> new ArchiveIterator(stream);
-            return StreamSupport.stream(iterable.spliterator(), false).map(entry -> entryToFileContext(stream, entry));
+            if (withContent) {
+                Map<Path, RpmFile> filesByPath = new LinkedHashMap<>();
+                rpmPackage.getInfo().getFiles().stream().forEach(f -> filesByPath.put(rpmFilePath(f), f));
+                RpmArchiveInputStream stream = new RpmArchiveInputStream(rpmPackage.getPath());
+                Iterable<CpioArchiveEntry> iterable = () -> new ArchiveIterator(stream);
+                return StreamSupport.stream(iterable.spliterator(), false)
+                        .map(entry -> entryToFileContext(stream, filesByPath, entry));
+            } else {
+                return rpmPackage.getInfo().getFiles().stream().map(this::fileToFileContext);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
