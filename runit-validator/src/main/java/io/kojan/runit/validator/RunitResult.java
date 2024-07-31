@@ -21,7 +21,7 @@ import org.opentest4j.TestAbortedException;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
-import io.kojan.runit.api.expectation.FailedExpectation;
+import io.kojan.runit.api.expectation.UnmetExpectation;
 
 class RunitResult implements TestExecutionListener {
 
@@ -122,7 +122,7 @@ class RunitResult implements TestExecutionListener {
         if (r.getThrowable().isPresent()) {
             log.append(" ");
             Throwable t = r.getThrowable().get();
-            if (t instanceof FailedExpectation e) {
+            if (t instanceof UnmetExpectation e) {
                 Decorated NL = Decorated.plain(System.lineSeparator());
                 log.append(e.getMessage());
                 log.append(NL);

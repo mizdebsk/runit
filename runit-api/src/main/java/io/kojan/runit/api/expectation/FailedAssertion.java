@@ -4,7 +4,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 
-class FailedAssertion extends AssertionError implements FailedExpectation {
+class FailedAssertion extends AssertionError implements UnmetExpectation {
     private static final long serialVersionUID = 1;
     private final String reason;
     private final Object value;

@@ -3,7 +3,7 @@ package io.kojan.runit.api.expectation;
 import org.hamcrest.Description;
 
 class MismatchDescriber {
-    static void describeMismatch(FailedExpectation mismatch, Description description) {
+    static void describeMismatch(UnmetExpectation mismatch, Description description) {
         description.appendText(mismatch.getMessage()) //
                 .appendText(System.lineSeparator()) //
                 .appendText("Expected: ") //

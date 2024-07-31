@@ -5,7 +5,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 import org.opentest4j.TestAbortedException;
 
-class FailedAssumption extends TestAbortedException implements FailedExpectation {
+class FailedAssumption extends TestAbortedException implements UnmetExpectation {
     private static final long serialVersionUID = 1;
     private final String reason;
     private final Object value;

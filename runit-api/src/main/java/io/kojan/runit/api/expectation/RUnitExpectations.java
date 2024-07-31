@@ -22,7 +22,7 @@ public class RUnitExpectations {
      * Assert that passed value matches given Hamcrest {@link Matcher}.
      * <p>
      * In case of mismatch, an instance of {@link AssertionError} implementing
-     * {@link FailedExpectation} is raised, which leads to test failure.
+     * {@link UnmetExpectation} is raised, which leads to test failure.
      * 
      * @param <T>         type of the value being matched
      * @param message     additional message about expectation
@@ -40,7 +40,7 @@ public class RUnitExpectations {
      * Assume that passed value matches given Hamcrest {@link Matcher}.
      * <p>
      * In case of mismatch, an instance of {@link TestAbortedException} implementing
-     * {@link FailedExpectation} is raised, which leads to test being skipped.
+     * {@link UnmetExpectation} is raised, which leads to test being skipped.
      * 
      * @param <T>         type of the value being matched
      * @param message     additional message about expectation
