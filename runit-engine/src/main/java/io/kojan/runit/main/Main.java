@@ -13,8 +13,6 @@ import io.kojan.runit.engine.TestRunnerFactory;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        System.err.println("Init...");
-        Init.init();
         System.err.println("Discovering tests...");
         DiscoveryService ds = new TestRunnerFactory().createDiscoveryService();
         for (TestCase test : ds.discoverTestCases()) {
