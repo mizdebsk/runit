@@ -10,7 +10,7 @@ public class RunitValidatorFactory implements ValidatorFactory {
 
     private final DiscoveryService ds = new TestRunnerFactory().createDiscoveryService();
 
-    protected DiscoveryService getDiscoveryService() {
+    DiscoveryService getDiscoveryService() {
         return ds;
     }
 

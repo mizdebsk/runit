@@ -4,7 +4,7 @@ public class TestValidatorFactory extends RunitValidatorFactory {
     static DiscoveryService ds;
 
     @Override
-    protected DiscoveryService getDiscoveryService() {
+    DiscoveryService getDiscoveryService() {
         return ds;
     }
 }
