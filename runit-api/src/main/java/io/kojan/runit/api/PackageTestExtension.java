@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.junit.platform.commons.util.AnnotationUtils;
 import org.opentest4j.TestAbortedException;
 
+import io.kojan.runit.api.context.GlobalContextProvider;
+
 class PackageTestExtension implements TestTemplateInvocationContextProvider {
 
     @Override

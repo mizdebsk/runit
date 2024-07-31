@@ -1,9 +1,11 @@
-package io.kojan.runit.api;
+package io.kojan.runit.api.context;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
+import io.kojan.runit.api.GlobalContext;
+import io.kojan.runit.api.PackageContext;
 
 public class GlobalContextImpl implements GlobalContext {
     private final List<RpmPackage> rpmPackages;
