@@ -8,7 +8,7 @@ import org.junit.platform.launcher.TestExecutionListener;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 
-public class TestCase {
+class TestCase {
     private final String displayName;
     private final Class<?> testClass;
 

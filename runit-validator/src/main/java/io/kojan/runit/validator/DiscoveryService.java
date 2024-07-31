@@ -19,7 +19,7 @@ import org.junit.platform.launcher.TestPlan;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 
-public class DiscoveryService {
+class DiscoveryService {
 
     private final String namespace;
     private final String classNamePattern;

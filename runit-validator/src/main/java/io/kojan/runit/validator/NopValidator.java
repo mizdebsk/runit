@@ -10,7 +10,7 @@ import org.fedoraproject.javapackages.validator.spi.Validator;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
 
-public class NopValidator implements Validator {
+class NopValidator implements Validator {
 
     @Override
     public String getTestName() {

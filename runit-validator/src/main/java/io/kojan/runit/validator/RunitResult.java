@@ -23,7 +23,7 @@ import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
 import io.kojan.runit.api.Mismatch;
 
-public class RunitResult implements TestExecutionListener {
+class RunitResult implements TestExecutionListener {
 
     private final ResultBuilder rb = new ResultBuilder();
     private final Deque<TestIdentifier> stack = new ArrayDeque<>();

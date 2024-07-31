@@ -1,6 +1,6 @@
 package io.kojan.runit.validator;
 
-public class TestRunnerFactory {
+class TestRunnerFactory {
     public DiscoveryService createDiscoveryService() {
         return createDiscoveryService("tests", ".*Check");
     }

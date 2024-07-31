@@ -11,7 +11,7 @@ import io.kojan.runit.api.GlobalContext;
 import io.kojan.runit.api.context.GlobalContextImpl;
 import io.kojan.runit.api.context.GlobalContextProvider;
 
-public class RunitValidator implements Validator {
+class RunitValidator implements Validator {
 
     private final TestCase test;
 
