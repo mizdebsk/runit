@@ -1,4 +1,4 @@
-package io.kojan.runit.api;
+package io.kojan.runit.api.extension;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
@@ -7,6 +7,8 @@ import org.junit.jupiter.api.extension.ParameterResolver;
 
 import io.kojan.javadeptools.rpm.RpmInfo;
 import io.kojan.javadeptools.rpm.RpmPackage;
+import io.kojan.runit.api.GlobalContext;
+import io.kojan.runit.api.PackageContext;
 
 class PackageTestParameterResolver implements ParameterResolver {
 

@@ -1,4 +1,4 @@
-package io.kojan.runit.api;
+package io.kojan.runit.api.extension;
 
 import java.lang.reflect.Method;
 import java.util.function.Predicate;
@@ -11,9 +11,13 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.junit.platform.commons.util.AnnotationUtils;
 import org.opentest4j.TestAbortedException;
 
+import io.kojan.runit.api.GlobalContext;
+import io.kojan.runit.api.PackageContext;
+import io.kojan.runit.api.PackageTest;
+import io.kojan.runit.api.PackageType;
 import io.kojan.runit.api.context.GlobalContextProvider;
 
-class PackageTestExtension implements TestTemplateInvocationContextProvider {
+public class PackageTestExtension implements TestTemplateInvocationContextProvider {
 
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {

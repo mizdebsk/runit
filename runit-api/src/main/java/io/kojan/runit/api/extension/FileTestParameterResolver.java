@@ -1,4 +1,4 @@
-package io.kojan.runit.api;
+package io.kojan.runit.api.extension;
 
 import java.nio.file.Path;
 
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 
 import io.kojan.javadeptools.rpm.RpmFile;
+import io.kojan.runit.api.FileContext;
 
 class FileTestParameterResolver extends PackageTestParameterResolver {
 

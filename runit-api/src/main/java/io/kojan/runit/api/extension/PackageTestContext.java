@@ -1,10 +1,12 @@
-package io.kojan.runit.api;
+package io.kojan.runit.api.extension;
 
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.extension.Extension;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
+
+import io.kojan.runit.api.PackageContext;
 
 class PackageTestContext implements TestTemplateInvocationContext {
 

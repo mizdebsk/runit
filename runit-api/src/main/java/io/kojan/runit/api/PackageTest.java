@@ -8,6 +8,8 @@ import java.lang.annotation.Target;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import io.kojan.runit.api.extension.PackageTestExtension;
+
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @TestTemplate
