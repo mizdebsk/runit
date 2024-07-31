@@ -26,11 +26,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <dependencies>
     <dependency>
       <groupId>io.kojan</groupId>
-      <artifactId>runit-engine</artifactId>
-      <version>0.0.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>io.kojan</groupId>
       <artifactId>java-deptools-native</artifactId>
       <version>1.2.0</version>
       <scope>provided</scope>
@@ -58,6 +53,22 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
           <artifactId>java-deptools-native</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <version>1.10.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.kojan</groupId>
+      <artifactId>runit-api</artifactId>
+      <version>0.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.10.0</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
   <build>
