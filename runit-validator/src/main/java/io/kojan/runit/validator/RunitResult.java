@@ -21,7 +21,7 @@ import org.opentest4j.TestAbortedException;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
-import io.kojan.runit.api.assertion.FailedExpectation;
+import io.kojan.runit.api.expectation.FailedExpectation;
 
 class RunitResult implements TestExecutionListener {
 

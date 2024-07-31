@@ -1,9 +1,9 @@
-package io.kojan.runit.api.assertion;
+package io.kojan.runit.api.expectation;
 
 import org.hamcrest.Matcher;
 
-public class RUnitAssertions {
-    private RUnitAssertions() {
+public class RUnitExpectations {
+    private RUnitExpectations() {
     }
 
     public static <T> void assertThat(String message, T actual, Matcher<? super T> expectation) {

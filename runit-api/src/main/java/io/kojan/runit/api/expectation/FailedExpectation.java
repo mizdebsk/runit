@@ -1,4 +1,4 @@
-package io.kojan.runit.api.assertion;
+package io.kojan.runit.api.expectation;
 
 import org.hamcrest.Matcher;
 
