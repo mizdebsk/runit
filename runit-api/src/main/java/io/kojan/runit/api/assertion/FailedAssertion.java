@@ -36,7 +36,7 @@ class FailedAssertion extends AssertionError implements Mismatch {
     @Override
     public String toString() {
         Description description = new StringDescription();
-        describeTo(description);
+        MismatchDescriber.describeMismatch(this, description);
         return description.toString();
     }
 }
