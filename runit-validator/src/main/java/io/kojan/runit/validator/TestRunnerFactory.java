@@ -1,4 +1,4 @@
-package io.kojan.runit.engine;
+package io.kojan.runit.validator;
 
 public class TestRunnerFactory {
     public DiscoveryService createDiscoveryService() {

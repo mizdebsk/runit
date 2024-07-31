@@ -22,7 +22,6 @@ import org.opentest4j.TestAbortedException;
 import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
 import io.kojan.runit.api.Mismatch;
-import io.kojan.runit.engine.TestCase;
 
 public class RunitResult implements TestExecutionListener {
 

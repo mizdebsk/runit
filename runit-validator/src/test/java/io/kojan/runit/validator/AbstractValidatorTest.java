@@ -17,8 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.io.CleanupMode;
 import org.junit.jupiter.api.io.TempDir;
 
-import io.kojan.runit.engine.TestRunnerFactory;
-
 abstract class AbstractValidatorTest {
     @TempDir(cleanup = CleanupMode.ON_SUCCESS)
     Path tempDir;

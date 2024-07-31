@@ -10,7 +10,6 @@ import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
 import io.kojan.runit.api.context.GlobalContextImpl;
 import io.kojan.runit.api.context.GlobalContextProvider;
-import io.kojan.runit.engine.TestCase;
 
 public class RunitValidator implements Validator {
 

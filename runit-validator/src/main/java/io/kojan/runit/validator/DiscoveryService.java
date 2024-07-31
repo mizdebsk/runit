@@ -1,4 +1,4 @@
-package io.kojan.runit.engine;
+package io.kojan.runit.validator;
 
 import static org.junit.platform.engine.discovery.ClassNameFilter.includeClassNamePatterns;
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectPackage;

@@ -6,10 +6,6 @@ import java.util.List;
 import org.fedoraproject.javapackages.validator.spi.Validator;
 import org.fedoraproject.javapackages.validator.spi.ValidatorFactory;
 
-import io.kojan.runit.engine.DiscoveryService;
-import io.kojan.runit.engine.TestCase;
-import io.kojan.runit.engine.TestRunnerFactory;
-
 public class RunitValidatorFactory implements ValidatorFactory {
 
     private final DiscoveryService ds = new TestRunnerFactory().createDiscoveryService();
