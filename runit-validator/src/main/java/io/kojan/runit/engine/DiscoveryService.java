@@ -49,7 +49,7 @@ public class DiscoveryService {
         for (TestIdentifier id : testPlan.getChildren(testPlan.getRoots().iterator().next())) {
             TestSource ts = id.getSource().get();
             if (ts instanceof ClassSource cs) {
-                tests.add(new TestCaseImpl(id.getDisplayName(), cs.getJavaClass()));
+                tests.add(new TestCase(id.getDisplayName(), cs.getJavaClass()));
             }
         }
         configureLogging(Level.INFO);
