@@ -7,7 +7,7 @@ import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
 import io.kojan.runit.api.PackageContext;
 
-public class GlobalContextImpl implements GlobalContext {
+class GlobalContextImpl implements GlobalContext {
     private final List<RpmPackage> rpmPackages;
 
     public GlobalContextImpl(GlobalContext globalContext) {

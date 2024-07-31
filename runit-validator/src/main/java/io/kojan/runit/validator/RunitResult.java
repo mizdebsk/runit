@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
 
 import org.fedoraproject.javapackages.validator.spi.Decorated;
 import org.fedoraproject.javapackages.validator.spi.LogEntry;
@@ -20,7 +21,6 @@ import org.junit.platform.launcher.TestPlan;
 import org.opentest4j.TestAbortedException;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
-import io.kojan.runit.api.GlobalContext;
 import io.kojan.runit.api.expectation.UnmetExpectation;
 
 class RunitResult implements TestExecutionListener {
@@ -29,9 +29,9 @@ class RunitResult implements TestExecutionListener {
     private final Deque<TestIdentifier> stack = new ArrayDeque<>();
     private final Deque<Boolean> stack2 = new ArrayDeque<>();
 
-    public RunitResult(TestCase test, GlobalContext context) {
+    public RunitResult(TestCase test, List<RpmPackage> rpmPackages) {
         rb.addLog(LogEntry.debug("Running test case {0}", Decorated.struct(test.getDisplayName())));
-        for (RpmPackage rpmPackage : context.getRpmPackages()) {
+        for (RpmPackage rpmPackage : rpmPackages) {
             rb.addLog(LogEntry.debug("Context RPM {0}", Decorated.rpm(rpmPackage)));
         }
     }

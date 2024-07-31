@@ -7,8 +7,6 @@ import org.fedoraproject.javapackages.validator.spi.Result;
 import org.fedoraproject.javapackages.validator.spi.Validator;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
-import io.kojan.runit.api.GlobalContext;
-import io.kojan.runit.api.context.GlobalContextImpl;
 import io.kojan.runit.api.context.GlobalContextProvider;
 
 class RunitValidator implements Validator {
@@ -29,9 +27,8 @@ class RunitValidator implements Validator {
     public Result validate(Iterable<RpmPackage> rpmPackagesIterable, List<String> argsIgnored) {
         List<RpmPackage> rpmPackages = new ArrayList<>();
         rpmPackagesIterable.forEach(rpmPackages::add);
-        GlobalContext context = new GlobalContextImpl(rpmPackages);
-        RunitResult result = new RunitResult(test, context);
-        GlobalContextProvider.setContext(context);
+        RunitResult result = new RunitResult(test, rpmPackages);
+        GlobalContextProvider.setRpmPackages(rpmPackages);
         test.run(result);
         return result.finish();
     }
