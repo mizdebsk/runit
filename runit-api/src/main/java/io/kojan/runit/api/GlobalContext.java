@@ -9,6 +9,8 @@ import io.kojan.javadeptools.rpm.RpmPackage;
  * Context in which RUnit tests are ran.
  * <p>
  * Specifies a set of RPM packages on which tests are ran.
+ * 
+ * @author Mikolaj Izdebski
  */
 public interface GlobalContext {
     /**

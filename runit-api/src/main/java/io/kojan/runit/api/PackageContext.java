@@ -9,6 +9,8 @@ import io.kojan.javadeptools.rpm.RpmPackage;
  * Context in which package tests annotated with {@link PackageTest} are ran.
  * <p>
  * Specifies the particular RPM package on which package tests are ran.
+ * 
+ * @author Mikolaj Izdebski
  */
 public interface PackageContext extends GlobalContext {
     /**

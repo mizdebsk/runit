@@ -22,6 +22,8 @@ import io.kojan.runit.api.context.GlobalContextProvider;
  * A JUnit Jupiter {@link Extension} that expands <a href=
  * "https://junit.org/junit5/docs/current/user-guide/#writing-tests-test-templates">test
  * templates</a> annotated with {@link FileTest}.
+ * 
+ * @author Mikolaj Izdebski
  */
 public class FileTestExtension implements TestTemplateInvocationContextProvider {
 

@@ -9,6 +9,8 @@ import io.kojan.javadeptools.rpm.RpmFile;
  * <p>
  * Specifies the particular file contained in RPM package on which file tests
  * are ran.
+ * 
+ * @author Mikolaj Izdebski
  */
 public interface FileContext extends PackageContext {
     /**

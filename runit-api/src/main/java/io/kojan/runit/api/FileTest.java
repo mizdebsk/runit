@@ -37,6 +37,8 @@ import io.kojan.runit.api.extension.FileTestExtension;
  * <li>{@link GlobalContext} &ndash; contains information about all the other
  * packages that are tested</li>
  * </ul>
+ * 
+ * @author Mikolaj Izdebski
  */
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)

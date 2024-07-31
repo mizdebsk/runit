@@ -9,6 +9,8 @@ import org.fedoraproject.javapackages.validator.spi.ValidatorFactory;
 /**
  * A factory for creating {@link Validator}s that execute JUnit tests discovered
  * on class path.
+ * 
+ * @author Mikolaj Izdebski
  */
 public class RunitValidatorFactory implements ValidatorFactory {
 

@@ -2,6 +2,8 @@ package io.kojan.runit.api;
 
 /**
  * Represents the kind of RPM package &ndash; source RPM (SRPM) or binary RPM.
+ * 
+ * @author Mikolaj Izdebski
  */
 public enum PackageType {
     /** Represents a source RPM package (SRPM). */
