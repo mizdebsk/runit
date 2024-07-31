@@ -6,7 +6,17 @@ import java.util.List;
 import org.fedoraproject.javapackages.validator.spi.Validator;
 import org.fedoraproject.javapackages.validator.spi.ValidatorFactory;
 
+/**
+ * A factory for creating {@link Validator}s that execute JUnit tests discovered
+ * on class path.
+ */
 public class RunitValidatorFactory implements ValidatorFactory {
+
+    /**
+     * Create an instance of the factory.
+     */
+    public RunitValidatorFactory() {
+    }
 
     private final DiscoveryService ds = new TestRunnerFactory().createDiscoveryService();
 
@@ -14,6 +24,14 @@ public class RunitValidatorFactory implements ValidatorFactory {
         return ds;
     }
 
+    /**
+     * Discover RUnit tests on class path.
+     * <p>
+     * For each test found, create a {@link Validator} that executes the test on
+     * given set of RPM packages. on class path.
+     * 
+     * @return list of validators corresponding to discovered tests
+     */
     @Override
     public List<Validator> getValidators() {
         List<TestCase> tests = getDiscoveryService().discoverTestCases();
