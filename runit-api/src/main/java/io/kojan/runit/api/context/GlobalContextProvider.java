@@ -13,7 +13,7 @@ import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
 
 /**
- * Provides {@link GlobalContext} for test execution.
+ * A static class for providing {@link GlobalContext} for test execution.
  * <p>
  * Context can be either obtained by reading RPM packages from file system
  * locations discovered through environment variables, or set by some other code
@@ -31,6 +31,9 @@ public class GlobalContextProvider {
     private static GlobalContext context;
     private static List<RpmPackage> rpmPackages;
     private static Path artifactsDir;
+
+    private GlobalContextProvider() {
+    }
 
     /**
      * Obtain an instance of {@link GlobalContext}.
