@@ -12,11 +12,31 @@ import java.util.stream.Collectors;
 import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
 
+/**
+ * Provides {@link GlobalContext} for test execution.
+ * <p>
+ * Context can be either obtained by reading RPM packages from file system
+ * locations discovered through environment variables, or set by some other code
+ * via one of static setter methods.
+ * <p>
+ * When context is not set by other means, then RPM files under directory
+ * pointed to by environment variable {@code RUNIT_TEST_ARTIFACTS} are used as
+ * context. In case that variable is not set, {@code TEST_ARTIFACTS} is used as
+ * fallback, and if that variable is not set either, directory
+ * {@code /tmp/test-artifacts} is used, if exists.
+ * 
+ * @author Mikolaj Izdebski
+ */
 public class GlobalContextProvider {
     private static GlobalContext context;
     private static List<RpmPackage> rpmPackages;
     private static Path artifactsDir;
 
+    /**
+     * Obtain an instance of {@link GlobalContext}.
+     * 
+     * @return global context with all RPM packages under test
+     */
     public static GlobalContext getContext() {
         if (context == null) {
             context = new GlobalContextImpl(getRpmPackages());
@@ -24,14 +44,32 @@ public class GlobalContextProvider {
         return context;
     }
 
+    /**
+     * Save {@link GlobalContext} for tests to use.
+     * 
+     * @param context global context to save
+     */
     public static void setContext(GlobalContext context) {
         GlobalContextProvider.context = context;
     }
 
+    /**
+     * Make a {@link GlobalContext} out of specified list of packages and save it
+     * for tests to use.
+     * 
+     * @param rpmPackages list of RPM packages that constitute context
+     */
     public static void setRpmPackages(List<RpmPackage> rpmPackages) {
         GlobalContextProvider.rpmPackages = rpmPackages;
     }
 
+    /**
+     * Make a {@link GlobalContext} out of RPM packages contained in specified
+     * directory and save it for tests to use.
+     * 
+     * @param artifactsDir path to directory containing RPM packages that constitute
+     *                     context
+     */
     public static void setArtifactsDir(Path artifactsDir) {
         GlobalContextProvider.artifactsDir = artifactsDir;
     }
