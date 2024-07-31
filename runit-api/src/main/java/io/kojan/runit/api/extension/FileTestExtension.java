@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.extension.Extension;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
@@ -17,13 +18,24 @@ import io.kojan.runit.api.FileTest;
 import io.kojan.runit.api.GlobalContext;
 import io.kojan.runit.api.context.GlobalContextProvider;
 
+/**
+ * A JUnit Jupiter {@link Extension} that expands <a href=
+ * "https://junit.org/junit5/docs/current/user-guide/#writing-tests-test-templates">test
+ * templates</a> annotated with {@link FileTest}.
+ */
 public class FileTestExtension implements TestTemplateInvocationContextProvider {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
 
