@@ -21,7 +21,7 @@ import org.opentest4j.TestAbortedException;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
-import io.kojan.runit.api.Mismatch;
+import io.kojan.runit.api.assertion.FailedExpectation;
 
 class RunitResult implements TestExecutionListener {
 
@@ -122,17 +122,17 @@ class RunitResult implements TestExecutionListener {
         if (r.getThrowable().isPresent()) {
             log.append(" ");
             Throwable t = r.getThrowable().get();
-            if (t instanceof Mismatch e) {
+            if (t instanceof FailedExpectation e) {
                 Decorated NL = Decorated.plain(System.lineSeparator());
-                log.append(e.getReason());
+                log.append(e.getMessage());
                 log.append(NL);
                 log.append("Expected: ");
                 DecoratedDescription expDescr = new DecoratedDescription(log, Decorated::expected);
-                expDescr.appendDescriptionOf(e.getMatcher());
+                expDescr.appendDescriptionOf(e.getExpectationMatcher());
                 log.append(NL);
                 log.append(" but: ");
                 DecoratedDescription actDescr = new DecoratedDescription(log, Decorated::actual);
-                e.getMatcher().describeMismatch(e.getValue(), actDescr);
+                e.getExpectationMatcher().describeMismatch(e.getActualValue(), actDescr);
             } else if (t instanceof TestAbortedException) {
                 log.append(Decorated.plain(t.getMessage()));
             } else {

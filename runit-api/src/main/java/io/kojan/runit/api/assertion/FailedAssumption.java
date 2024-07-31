@@ -5,9 +5,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 import org.opentest4j.TestAbortedException;
 
-import io.kojan.runit.api.Mismatch;
-
-class FailedAssumption extends TestAbortedException implements Mismatch {
+class FailedAssumption extends TestAbortedException implements FailedExpectation {
     private static final long serialVersionUID = 1;
     private final String reason;
     private final Object value;
@@ -20,17 +18,17 @@ class FailedAssumption extends TestAbortedException implements Mismatch {
     }
 
     @Override
-    public String getReason() {
+    public String getMessage() {
         return reason;
     }
 
     @Override
-    public Object getValue() {
+    public Object getActualValue() {
         return value;
     }
 
     @Override
-    public Matcher<?> getMatcher() {
+    public Matcher<?> getExpectationMatcher() {
         return matcher;
     }
 

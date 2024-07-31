@@ -4,9 +4,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 
-import io.kojan.runit.api.Mismatch;
-
-class FailedAssertion extends AssertionError implements Mismatch {
+class FailedAssertion extends AssertionError implements FailedExpectation {
     private static final long serialVersionUID = 1;
     private final String reason;
     private final Object value;
@@ -19,17 +17,17 @@ class FailedAssertion extends AssertionError implements Mismatch {
     }
 
     @Override
-    public String getReason() {
+    public String getMessage() {
         return reason;
     }
 
     @Override
-    public Object getValue() {
+    public Object getActualValue() {
         return value;
     }
 
     @Override
-    public Matcher<?> getMatcher() {
+    public Matcher<?> getExpectationMatcher() {
         return matcher;
     }
 
