@@ -6,6 +6,6 @@ public class TestRunnerFactory {
     }
 
     public DiscoveryService createDiscoveryService(String namespace, String classNamePattern) {
-        return new DiscoveryServiceImpl(namespace, classNamePattern);
+        return new DiscoveryService(namespace, classNamePattern);
     }
 }
