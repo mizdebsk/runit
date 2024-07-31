@@ -30,6 +30,15 @@ public interface PackageContext extends GlobalContext {
     /**
      * Produces a {@link Stream} of {@link FileContext}s that allows iterating over
      * all files in the package context.
+     * <p>
+     * For performance reasons, there is a possibility to stream through files from
+     * RPM header only, without reading CPIO archive.
+     * 
+     * @param withContent whether RPM archive contents should be read; if
+     *                    {@code true} then CPIO payload of RPM package is
+     *                    uncompressed and all file contents are read into memory,
+     *                    if {@code false} then only RPM header is processed and
+     *                    file contents are not available
      * 
      * @return stream of file contexts
      */
