@@ -26,6 +26,12 @@ import io.kojan.runit.api.context.GlobalContextProvider;
 public class FileTestExtension implements TestTemplateInvocationContextProvider {
 
     /**
+     * Creates an instance of the JUnit extension.
+     */
+    public FileTestExtension() {
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
