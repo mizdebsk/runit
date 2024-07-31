@@ -1,4 +1,4 @@
-package io.kojan.runit.engine.ctx;
+package io.kojan.runit.api;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -15,9 +15,6 @@ import org.apache.commons.compress.archivers.cpio.CpioArchiveEntry;
 import io.kojan.javadeptools.rpm.RpmArchiveInputStream;
 import io.kojan.javadeptools.rpm.RpmFile;
 import io.kojan.javadeptools.rpm.RpmPackage;
-import io.kojan.runit.api.FileContext;
-import io.kojan.runit.api.GlobalContext;
-import io.kojan.runit.api.PackageContext;
 
 class ArchiveIterator implements Iterator<CpioArchiveEntry> {
 
@@ -64,7 +61,7 @@ class ArchiveIterator implements Iterator<CpioArchiveEntry> {
 
 }
 
-public class PackageContextImpl extends GlobalContextImpl implements PackageContext {
+class PackageContextImpl extends GlobalContextImpl implements PackageContext {
     private final RpmPackage rpmPackage;
 
     public PackageContextImpl(PackageContext packageContext) {

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
+import io.kojan.runit.api.GlobalContextImpl;
 import io.kojan.runit.api.GlobalContextProvider;
-import io.kojan.runit.engine.ctx.GlobalContextImpl;
 
 class Init {
     public static void init() throws IOException {

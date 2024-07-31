@@ -1,13 +1,11 @@
-package io.kojan.runit.engine.ctx;
+package io.kojan.runit.api;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import io.kojan.javadeptools.rpm.RpmFile;
-import io.kojan.runit.api.FileContext;
-import io.kojan.runit.api.PackageContext;
 
-public class FileContextImpl extends PackageContextImpl implements FileContext {
+class FileContextImpl extends PackageContextImpl implements FileContext {
     private final Path filePath;
     private final RpmFile rpmFile;
     private final byte[] content;

@@ -8,9 +8,9 @@ import org.fedoraproject.javapackages.validator.spi.Validator;
 
 import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
+import io.kojan.runit.api.GlobalContextImpl;
 import io.kojan.runit.api.GlobalContextProvider;
 import io.kojan.runit.engine.TestCase;
-import io.kojan.runit.engine.ctx.GlobalContextImpl;
 
 public class RunitValidator implements Validator {
 
