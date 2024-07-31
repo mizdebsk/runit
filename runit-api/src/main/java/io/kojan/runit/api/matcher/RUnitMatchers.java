@@ -6,10 +6,21 @@ import org.hamcrest.TypeSafeMatcher;
 
 import io.kojan.javadeptools.rpm.RpmInfo;
 
+/**
+ * A static class providing factory methods for creating Hamcrest
+ * {@link Matcher}s related to RPM packages.
+ * 
+ * @author Mikolaj Izdebski
+ */
 public class RUnitMatchers {
     private RUnitMatchers() {
     }
 
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches source RPM packages.
+     * 
+     * @return matcher for source RPMs
+     */
     public static Matcher<RpmInfo> sourceRPM() {
         return new TypeSafeMatcher<>() {
             @Override
