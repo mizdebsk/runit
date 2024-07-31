@@ -1,11 +1,13 @@
-package io.kojan.runit.api;
+package io.kojan.runit.api.assertion;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 import org.opentest4j.TestAbortedException;
 
-public class FailedAssumption extends TestAbortedException implements Mismatch {
+import io.kojan.runit.api.Mismatch;
+
+class FailedAssumption extends TestAbortedException implements Mismatch {
     private static final long serialVersionUID = 1;
     private final String reason;
     private final Object value;

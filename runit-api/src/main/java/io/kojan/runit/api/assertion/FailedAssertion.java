@@ -1,10 +1,12 @@
-package io.kojan.runit.api;
+package io.kojan.runit.api.assertion;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 
-public class FailedAssertion extends AssertionError implements Mismatch {
+import io.kojan.runit.api.Mismatch;
+
+class FailedAssertion extends AssertionError implements Mismatch {
     private static final long serialVersionUID = 1;
     private final String reason;
     private final Object value;

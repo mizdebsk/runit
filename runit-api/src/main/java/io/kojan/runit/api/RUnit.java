@@ -5,18 +5,15 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 import io.kojan.javadeptools.rpm.RpmInfo;
+import io.kojan.runit.api.assertion.RUnitAssertions;
 
 public class RUnit {
     public static <T> void assertThat(String reason, T value, Matcher<? super T> matcher) {
-        if (!matcher.matches(value)) {
-            throw new FailedAssertion(reason, value, matcher);
-        }
+        RUnitAssertions.assertThat(reason, value, matcher);
     }
 
     public static <T> void assumeThat(String reason, T value, Matcher<? super T> matcher) {
-        if (!matcher.matches(value)) {
-            throw new FailedAssumption(reason, value, matcher);
-        }
+        RUnitAssertions.assumeThat(reason, value, matcher);
     }
 
     public static Matcher<RpmInfo> sourceRPM() {
