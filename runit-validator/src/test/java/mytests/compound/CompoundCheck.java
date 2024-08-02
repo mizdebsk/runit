@@ -5,41 +5,52 @@ import org.junit.jupiter.api.DisplayName;
 import io.kojan.javadeptools.rpm.RpmFile;
 import io.kojan.javadeptools.rpm.RpmInfo;
 import io.kojan.runit.api.FileTest;
+import io.kojan.runit.api.IncludeBinaryRPM;
+import io.kojan.runit.api.IncludeFileName;
+import io.kojan.runit.api.IncludeSourceName;
+import io.kojan.runit.api.IncludeSourceRPM;
 import io.kojan.runit.api.PackageTest;
-import io.kojan.runit.api.PackageType;
 
 @DisplayName("/TST")
 public class CompoundCheck {
 
-    @PackageTest(type = PackageType.SOURCE)
+    @PackageTest
+    @IncludeSourceRPM
     void testSourceRPM(RpmInfo rpm) {
     }
 
-    @PackageTest(type = PackageType.BINARY)
+    @PackageTest
+    @IncludeBinaryRPM
     void testBinaryRPM(RpmInfo rpm) {
     }
 
-    @PackageTest("compound(|-.*)")
+    @PackageTest
+    @IncludeSourceName("compound(|-.*)")
     void testPatternMatch(RpmInfo rpm) {
     }
 
-    @PackageTest("other")
+    @PackageTest
+    @IncludeSourceName("other")
     void testOther(RpmInfo rpm) {
     }
 
-    @PackageTest("dummy")
+    @PackageTest
+    @IncludeSourceName("dummy")
     void testNonexistentPackage() {
     }
 
-    @FileTest(".*\\.jar")
+    @FileTest
+    @IncludeFileName(".*\\.jar")
     void testJar(RpmFile ent) {
     }
 
-    @FileTest("/usr/share/javadoc/(|.*)")
+    @FileTest
+    @IncludeFileName("/usr/share/javadoc/(|.*)")
     void testJavadoc(RpmFile ent) {
     }
 
-    @FileTest("dummy")
+    @FileTest
+    @IncludeFileName("dummy")
     void testNonexistentFile() {
     }
 }
