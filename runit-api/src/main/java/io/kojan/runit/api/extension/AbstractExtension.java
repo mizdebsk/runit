@@ -43,7 +43,7 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         if (includeSource.isPresent()) {
             Matcher<RpmInfo> matcher = RUnitMatchers.sourceRPM();
             if (!includeSource.get().value().isBlank()) {
-                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(includeSource.get().value()));
+                matcher = Matchers.allOf(matcher, RUnitMatchers.sourceName(includeSource.get().value()));
             }
             includes.add(matcher);
         }
@@ -68,7 +68,7 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         if (excludeSource.isPresent()) {
             Matcher<RpmInfo> matcher = RUnitMatchers.sourceRPM();
             if (!excludeSource.get().value().isBlank()) {
-                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(excludeSource.get().value()));
+                matcher = Matchers.allOf(matcher, RUnitMatchers.sourceName(excludeSource.get().value()));
             }
             excludes.add(matcher);
         }
