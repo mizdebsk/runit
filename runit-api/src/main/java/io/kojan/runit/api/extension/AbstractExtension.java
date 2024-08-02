@@ -36,7 +36,7 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         return true;
     }
 
-    Matcher<RpmInfo> getPackageIncludes(Method method) {
+    private Matcher<RpmInfo> getPackageIncludes(Method method) {
         List<Matcher<? super RpmInfo>> includes = new ArrayList<>();
 
         Optional<IncludeSource> includeSource = AnnotationUtils.findAnnotation(method, IncludeSource.class);
@@ -61,7 +61,7 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         return includes.isEmpty() ? Matchers.any(RpmInfo.class) : Matchers.anyOf(includes);
     }
 
-    Matcher<RpmInfo> getPackageExcludes(Method method) {
+    private Matcher<RpmInfo> getPackageExcludes(Method method) {
         List<Matcher<? super RpmInfo>> excludes = new ArrayList<>();
 
         Optional<ExcludeSource> excludeSource = AnnotationUtils.findAnnotation(method, ExcludeSource.class);
@@ -85,7 +85,7 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         return Matchers.not(Matchers.anyOf(excludes));
     }
 
-    Matcher<RpmFile> getFileIncludes(Method method) {
+    private Matcher<RpmFile> getFileIncludes(Method method) {
         List<Matcher<? super RpmFile>> includes = new ArrayList<>();
 
         if (AnnotationUtils.findAnnotation(method, IncludeRegularFile.class).isPresent()) {
@@ -109,7 +109,7 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         return includes.isEmpty() ? Matchers.any(RpmFile.class) : Matchers.anyOf(includes);
     }
 
-    Matcher<RpmFile> getFileExcludes(Method method) {
+    private Matcher<RpmFile> getFileExcludes(Method method) {
         List<Matcher<? super RpmFile>> excludes = new ArrayList<>();
 
         if (AnnotationUtils.findAnnotation(method, ExcludeRegularFile.class).isPresent()) {
@@ -130,5 +130,13 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         }
 
         return Matchers.not(Matchers.anyOf(excludes));
+    }
+
+    Matcher<RpmInfo> getPackageMatcher(Method method) {
+        return Matchers.allOf(getPackageIncludes(method), getPackageExcludes(method));
+    }
+
+    Matcher<RpmFile> getFileMatcher(Method method) {
+        return Matchers.allOf(getFileIncludes(method), getFileExcludes(method));
     }
 }

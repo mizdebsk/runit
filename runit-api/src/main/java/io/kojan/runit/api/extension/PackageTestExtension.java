@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.extension.Extension;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
@@ -39,8 +38,8 @@ public class PackageTestExtension extends AbstractExtension {
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
 
         Method method = context.getRequiredTestMethod();
-        Matcher<RpmInfo> matcher = Matchers.allOf(getPackageIncludes(method), getPackageExcludes(method));
-        Predicate<PackageContext> filter = fc -> matcher.matches(fc.getRpmInfo());
+        Matcher<RpmInfo> packageMatcher = getPackageMatcher(method);
+        Predicate<PackageContext> filter = fc -> packageMatcher.matches(fc.getRpmInfo());
 
         GlobalContext globalContext = GlobalContextProvider.getContext();
         if (globalContext.getPackageSubcontexts().noneMatch(filter)) {
