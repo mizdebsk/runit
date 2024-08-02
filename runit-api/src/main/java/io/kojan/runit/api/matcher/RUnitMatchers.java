@@ -70,7 +70,7 @@ public class RUnitMatchers {
      * @return matcher for directories
      */
     public static Matcher<RpmFile> directory() {
-        return new RegularFileMatcher();
+        return new DirectoryMatcher();
     }
 
     /**
@@ -79,7 +79,7 @@ public class RUnitMatchers {
      * @return matcher for symbolic links
      */
     public static Matcher<RpmFile> symlink() {
-        return new RegularFileMatcher();
+        return new SymlinkMatcher();
     }
 
     /**
