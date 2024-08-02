@@ -49,7 +49,7 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         for (IncludeBinary includeBinary : AnnotationUtils.findRepeatableAnnotations(method, IncludeBinary.class)) {
             Matcher<RpmInfo> matcher = RUnitMatchers.binaryRPM();
             if (!includeBinary.value().isEmpty()) {
-                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(includeBinary.value()));
+                matcher = Matchers.allOf(matcher, RUnitMatchers.name(includeBinary.value()));
             }
             includes.add(matcher);
         }
@@ -72,7 +72,7 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
         for (ExcludeBinary excludeBinary : AnnotationUtils.findRepeatableAnnotations(method, ExcludeBinary.class)) {
             Matcher<RpmInfo> matcher = RUnitMatchers.binaryRPM();
             if (!excludeBinary.value().isEmpty()) {
-                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(excludeBinary.value()));
+                matcher = Matchers.allOf(matcher, RUnitMatchers.name(excludeBinary.value()));
             }
             excludes.add(matcher);
         }

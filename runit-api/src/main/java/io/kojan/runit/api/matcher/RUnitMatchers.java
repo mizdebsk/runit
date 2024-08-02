@@ -16,25 +16,25 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches source and binary RPM
-     * packages which component name matching regular expression.
+     * Creates a Hamcrest {@link Matcher} that matches RPM packages which source
+     * name matching regular expression.
      * 
      * @param regex regular expression to match against package source name
-     * @return matcher for source name
+     * @return matcher for package source name
      */
     public static Matcher<RpmInfo> sourceName(String regex) {
         return new SourceNameMatcher(regex);
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches binary RPM packages which
-     * name matching regular expression.
+     * Creates a Hamcrest {@link Matcher} that matches RPM packages which name
+     * matching regular expression.
      * 
      * @param regex regular expression to match against package name
-     * @return matcher for binary name
+     * @return matcher for package name
      */
-    public static Matcher<RpmInfo> binaryName(String regex) {
-        return new BinaryNameMatcher(regex);
+    public static Matcher<RpmInfo> name(String regex) {
+        return new PackageNameMatcher(regex);
     }
 
     /**
