@@ -23,8 +23,7 @@ class FileNameMatcher extends AbstractFileMatcher {
 
     @Override
     public void describeTo(Description description) {
-        description.appendText("RPM file name matching pattern \"");
+        description.appendText("file name matching pattern ");
         description.appendValue(pattern);
-        description.appendText("\"");
     }
 }

@@ -23,8 +23,7 @@ class PackageNameMatcher extends AbstractPackageMatcher {
 
     @Override
     public void describeTo(Description description) {
-        description.appendText("RPM name matching pattern \"");
+        description.appendText("package name matching pattern ");
         description.appendValue(pattern);
-        description.appendText("\"");
     }
 }

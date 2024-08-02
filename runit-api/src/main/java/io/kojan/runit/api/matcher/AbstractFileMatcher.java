@@ -12,11 +12,9 @@ abstract class AbstractFileMatcher extends TypeSafeMatcher<RpmFile> {
         case RpmFile f when f.isRegularFile() -> "regular file";
         case RpmFile f when f.isDirectory() -> "directory";
         case RpmFile f when f.isSymbolicLink() -> "symbolic link";
-        default -> "file";
+        default -> "unknown-type file";
         };
         description.appendText("was ");
         description.appendText(type);
-        description.appendText(" ");
-        description.appendValue(file);
     }
 }

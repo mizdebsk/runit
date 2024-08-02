@@ -10,7 +10,5 @@ abstract class AbstractPackageMatcher extends TypeSafeMatcher<RpmInfo> {
     protected void describeMismatchSafely(RpmInfo rpm, Description description) {
         description.appendText("was ");
         description.appendText(rpm.isSourcePackage() ? "source RPM" : "binary RPM");
-        description.appendText(" ");
-        description.appendValue(rpm);
     }
 }

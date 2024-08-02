@@ -22,7 +22,7 @@ class FileModeMatcher extends AbstractFileMatcher {
 
     @Override
     public void describeTo(Description description) {
-        description.appendText("RPM file with mode");
+        description.appendText("file with mode");
         description.appendValue(mode);
     }
 
