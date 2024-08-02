@@ -103,4 +103,103 @@ public class RUnitMatchers {
     public static Matcher<RpmFile> mode(String mode) {
         return new FileModeMatcher(mode);
     }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with Provides
+     * matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package Provides
+     * @return matcher for package Provides
+     */
+    public static Matcher<RpmInfo> provides(String regex) {
+        return new DependencyMatcher("Provides", RpmInfo::getProvides, regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with Requires
+     * matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package Requires
+     * @return matcher for package Requires
+     */
+    public static Matcher<RpmInfo> requires(String regex) {
+        return new DependencyMatcher("Requires", RpmInfo::getRequires, regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with Conflicts
+     * matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package Conflicts
+     * @return matcher for package Conflicts
+     */
+    public static Matcher<RpmInfo> conflicts(String regex) {
+        return new DependencyMatcher("Conflicts", RpmInfo::getConflicts, regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with Obsoletes
+     * matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package Obsoletes
+     * @return matcher for package Obsoletes
+     */
+    public static Matcher<RpmInfo> obsoletes(String regex) {
+        return new DependencyMatcher("Obsoletes", RpmInfo::getObsoletes, regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with Recommends
+     * matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package Recommends
+     * @return matcher for package Recommends
+     */
+    public static Matcher<RpmInfo> recommends(String regex) {
+        return new DependencyMatcher("Recommends", RpmInfo::getRecommends, regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with Suggests
+     * matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package Suggests
+     * @return matcher for package Suggests
+     */
+    public static Matcher<RpmInfo> suggests(String regex) {
+        return new DependencyMatcher("Suggests", RpmInfo::getSuggests, regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with Supplements
+     * matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package Supplements
+     * @return matcher for package Supplements
+     */
+    public static Matcher<RpmInfo> supplements(String regex) {
+        return new DependencyMatcher("Supplements", RpmInfo::getSupplements, regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with Enhances
+     * matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package Enhances
+     * @return matcher for package Enhances
+     */
+    public static Matcher<RpmInfo> enhances(String regex) {
+        return new DependencyMatcher("Enhances", RpmInfo::getEnhances, regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches packages with
+     * OrderWithRequires matching specified regular expression.
+     * 
+     * @param regex regular expression to match against package OrderWithRequires
+     * @return matcher for package OrderWithRequires
+     */
+    public static Matcher<RpmInfo> orderWithRequires(String regex) {
+        return new DependencyMatcher("OrderWithRequires", RpmInfo::getOrderWithRequires, regex);
+    }
 }
