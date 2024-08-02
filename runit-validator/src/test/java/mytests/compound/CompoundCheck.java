@@ -5,37 +5,36 @@ import org.junit.jupiter.api.DisplayName;
 import io.kojan.javadeptools.rpm.RpmFile;
 import io.kojan.javadeptools.rpm.RpmInfo;
 import io.kojan.runit.api.FileTest;
-import io.kojan.runit.api.IncludeBinaryRPM;
+import io.kojan.runit.api.IncludeBinary;
 import io.kojan.runit.api.IncludeFileName;
-import io.kojan.runit.api.IncludeSourceName;
-import io.kojan.runit.api.IncludeSourceRPM;
+import io.kojan.runit.api.IncludeSource;
 import io.kojan.runit.api.PackageTest;
 
 @DisplayName("/TST")
 public class CompoundCheck {
 
     @PackageTest
-    @IncludeSourceRPM
+    @IncludeSource
     void testSourceRPM(RpmInfo rpm) {
     }
 
     @PackageTest
-    @IncludeBinaryRPM
+    @IncludeBinary
     void testBinaryRPM(RpmInfo rpm) {
     }
 
     @PackageTest
-    @IncludeSourceName("compound(|-.*)")
+    @IncludeSource("compound(|-.*)")
     void testPatternMatch(RpmInfo rpm) {
     }
 
     @PackageTest
-    @IncludeSourceName("other")
+    @IncludeSource("other")
     void testOther(RpmInfo rpm) {
     }
 
     @PackageTest
-    @IncludeSourceName("dummy")
+    @IncludeSource("dummy")
     void testNonexistentPackage() {
     }
 

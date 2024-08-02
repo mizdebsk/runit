@@ -17,15 +17,11 @@ import org.junit.platform.commons.util.AnnotationUtils;
 import org.opentest4j.TestAbortedException;
 
 import io.kojan.javadeptools.rpm.RpmInfo;
-import io.kojan.runit.api.ExcludeBinaryName;
-import io.kojan.runit.api.ExcludeBinaryRPM;
-import io.kojan.runit.api.ExcludeSourceName;
-import io.kojan.runit.api.ExcludeSourceRPM;
+import io.kojan.runit.api.ExcludeBinary;
+import io.kojan.runit.api.ExcludeSource;
 import io.kojan.runit.api.GlobalContext;
-import io.kojan.runit.api.IncludeBinaryName;
-import io.kojan.runit.api.IncludeBinaryRPM;
-import io.kojan.runit.api.IncludeSourceName;
-import io.kojan.runit.api.IncludeSourceRPM;
+import io.kojan.runit.api.IncludeBinary;
+import io.kojan.runit.api.IncludeSource;
 import io.kojan.runit.api.PackageContext;
 import io.kojan.runit.api.PackageTest;
 import io.kojan.runit.api.context.GlobalContextProvider;
@@ -57,22 +53,22 @@ public class PackageTestExtension implements TestTemplateInvocationContextProvid
     private Matcher<RpmInfo> getIncludes(Method method) {
         List<Matcher<? super RpmInfo>> includes = new ArrayList<>();
 
-        if (AnnotationUtils.findAnnotation(method, IncludeSourceRPM.class).isPresent()) {
-            includes.add(RUnitMatchers.sourceRPM());
+        Optional<IncludeSource> includeSource = AnnotationUtils.findAnnotation(method, IncludeSource.class);
+        if (includeSource.isPresent()) {
+            Matcher<RpmInfo> matcher = RUnitMatchers.sourceRPM();
+            if (!includeSource.get().value().isBlank()) {
+                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(includeSource.get().value()));
+            }
+            includes.add(matcher);
         }
 
-        if (AnnotationUtils.findAnnotation(method, IncludeBinaryRPM.class).isPresent()) {
-            includes.add(RUnitMatchers.binaryRPM());
-        }
-
-        Optional<IncludeSourceName> includeSourceName = AnnotationUtils.findAnnotation(method, IncludeSourceName.class);
-        if (includeSourceName.isPresent()) {
-            includes.add(RUnitMatchers.sourceName(includeSourceName.get().value()));
-        }
-
-        Optional<IncludeBinaryName> includeBinaryName = AnnotationUtils.findAnnotation(method, IncludeBinaryName.class);
-        if (includeBinaryName.isPresent()) {
-            includes.add(RUnitMatchers.binaryName(includeBinaryName.get().value()));
+        Optional<IncludeBinary> includeBinary = AnnotationUtils.findAnnotation(method, IncludeBinary.class);
+        if (includeBinary.isPresent()) {
+            Matcher<RpmInfo> matcher = RUnitMatchers.binaryRPM();
+            if (!includeBinary.get().value().isBlank()) {
+                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(includeBinary.get().value()));
+            }
+            includes.add(matcher);
         }
 
         // No includes means include everything
@@ -82,22 +78,22 @@ public class PackageTestExtension implements TestTemplateInvocationContextProvid
     private Matcher<RpmInfo> getExcludes(Method method) {
         List<Matcher<? super RpmInfo>> excludes = new ArrayList<>();
 
-        if (AnnotationUtils.findAnnotation(method, ExcludeSourceRPM.class).isPresent()) {
-            excludes.add(RUnitMatchers.sourceRPM());
+        Optional<ExcludeSource> excludeSource = AnnotationUtils.findAnnotation(method, ExcludeSource.class);
+        if (excludeSource.isPresent()) {
+            Matcher<RpmInfo> matcher = RUnitMatchers.sourceRPM();
+            if (!excludeSource.get().value().isBlank()) {
+                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(excludeSource.get().value()));
+            }
+            excludes.add(matcher);
         }
 
-        if (AnnotationUtils.findAnnotation(method, ExcludeBinaryRPM.class).isPresent()) {
-            excludes.add(RUnitMatchers.binaryRPM());
-        }
-
-        Optional<ExcludeSourceName> excludeSourceName = AnnotationUtils.findAnnotation(method, ExcludeSourceName.class);
-        if (excludeSourceName.isPresent()) {
-            excludes.add(RUnitMatchers.sourceName(excludeSourceName.get().value()));
-        }
-
-        Optional<ExcludeBinaryName> excludeBinaryName = AnnotationUtils.findAnnotation(method, ExcludeBinaryName.class);
-        if (excludeBinaryName.isPresent()) {
-            excludes.add(RUnitMatchers.binaryName(excludeBinaryName.get().value()));
+        Optional<ExcludeBinary> excludeBinary = AnnotationUtils.findAnnotation(method, ExcludeBinary.class);
+        if (excludeBinary.isPresent()) {
+            Matcher<RpmInfo> matcher = RUnitMatchers.binaryRPM();
+            if (!excludeBinary.get().value().isBlank()) {
+                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(excludeBinary.get().value()));
+            }
+            excludes.add(matcher);
         }
 
         return Matchers.not(Matchers.anyOf(excludes));
