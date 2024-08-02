@@ -5,7 +5,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,29 +36,4 @@ import io.kojan.runit.api.extension.PackageTestExtension;
 @ExtendWith(PackageTestExtension.class)
 @Documented
 public @interface PackageTest {
-    /**
-     * Optional Java {@link Pattern regular expression} used to limit packages on
-     * which the test template is expanded.
-     * <p>
-     * If specified then tests are ran only on packages with names matching the
-     * pattern.
-     * <p>
-     * Defaults to all packages.
-     * 
-     * @return regular expression used to filter names of packages, empty string
-     *         means no filtering
-     */
-    String value() default "";
-
-    /**
-     * Optional {@link PackageType package type} used to limit packages on which the
-     * test template is expanded.
-     * <p>
-     * If specified then tests are ran only on packages of given type.
-     * <p>
-     * Defaults to all package types.
-     * 
-     * @return package type used to filter packages
-     */
-    PackageType type() default PackageType.BOTH;
 }

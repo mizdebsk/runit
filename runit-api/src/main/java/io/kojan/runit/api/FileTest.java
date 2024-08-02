@@ -6,7 +6,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.nio.file.Path;
-import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -46,17 +45,4 @@ import io.kojan.runit.api.extension.FileTestExtension;
 @ExtendWith(FileTestExtension.class)
 @Documented
 public @interface FileTest {
-    /**
-     * Optional Java {@link Pattern regular expression} used to limit files on which
-     * the test template is expanded.
-     * <p>
-     * If specified then tests are ran only on files with paths matching the
-     * pattern.
-     * <p>
-     * Defaults to all files.
-     * 
-     * @return regular expression used to filter paths of files, empty string means
-     *         no filtering
-     */
-    String value() default "";
 }
