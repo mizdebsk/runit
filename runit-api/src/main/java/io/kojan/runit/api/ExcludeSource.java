@@ -1,6 +1,7 @@
 package io.kojan.runit.api;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -13,6 +14,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(ExcludeSources.class)
 public @interface ExcludeSource {
     /**
      * Optional regular expression that is matched against package names. Can be

@@ -1,6 +1,7 @@
 package io.kojan.runit.api;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -12,6 +13,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(IncludeFileNames.class)
 public @interface IncludeFileName {
     /**
      * Specifies regular expression that is matched against file names.

@@ -3,7 +3,6 @@ package io.kojan.runit.api.extension;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -39,20 +38,18 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
     private Matcher<RpmInfo> getPackageIncludes(Method method) {
         List<Matcher<? super RpmInfo>> includes = new ArrayList<>();
 
-        Optional<IncludeSource> includeSource = AnnotationUtils.findAnnotation(method, IncludeSource.class);
-        if (includeSource.isPresent()) {
+        for (IncludeSource includeSource : AnnotationUtils.findRepeatableAnnotations(method, IncludeSource.class)) {
             Matcher<RpmInfo> matcher = RUnitMatchers.sourceRPM();
-            if (!includeSource.get().value().isBlank()) {
-                matcher = Matchers.allOf(matcher, RUnitMatchers.sourceName(includeSource.get().value()));
+            if (!includeSource.value().isEmpty()) {
+                matcher = Matchers.allOf(matcher, RUnitMatchers.sourceName(includeSource.value()));
             }
             includes.add(matcher);
         }
 
-        Optional<IncludeBinary> includeBinary = AnnotationUtils.findAnnotation(method, IncludeBinary.class);
-        if (includeBinary.isPresent()) {
+        for (IncludeBinary includeBinary : AnnotationUtils.findRepeatableAnnotations(method, IncludeBinary.class)) {
             Matcher<RpmInfo> matcher = RUnitMatchers.binaryRPM();
-            if (!includeBinary.get().value().isBlank()) {
-                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(includeBinary.get().value()));
+            if (!includeBinary.value().isEmpty()) {
+                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(includeBinary.value()));
             }
             includes.add(matcher);
         }
@@ -64,20 +61,18 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
     private Matcher<RpmInfo> getPackageExcludes(Method method) {
         List<Matcher<? super RpmInfo>> excludes = new ArrayList<>();
 
-        Optional<ExcludeSource> excludeSource = AnnotationUtils.findAnnotation(method, ExcludeSource.class);
-        if (excludeSource.isPresent()) {
+        for (ExcludeSource excludeSource : AnnotationUtils.findRepeatableAnnotations(method, ExcludeSource.class)) {
             Matcher<RpmInfo> matcher = RUnitMatchers.sourceRPM();
-            if (!excludeSource.get().value().isBlank()) {
-                matcher = Matchers.allOf(matcher, RUnitMatchers.sourceName(excludeSource.get().value()));
+            if (!excludeSource.value().isEmpty()) {
+                matcher = Matchers.allOf(matcher, RUnitMatchers.sourceName(excludeSource.value()));
             }
             excludes.add(matcher);
         }
 
-        Optional<ExcludeBinary> excludeBinary = AnnotationUtils.findAnnotation(method, ExcludeBinary.class);
-        if (excludeBinary.isPresent()) {
+        for (ExcludeBinary excludeBinary : AnnotationUtils.findRepeatableAnnotations(method, ExcludeBinary.class)) {
             Matcher<RpmInfo> matcher = RUnitMatchers.binaryRPM();
-            if (!excludeBinary.get().value().isBlank()) {
-                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(excludeBinary.get().value()));
+            if (!excludeBinary.value().isEmpty()) {
+                matcher = Matchers.allOf(matcher, RUnitMatchers.binaryName(excludeBinary.value()));
             }
             excludes.add(matcher);
         }
@@ -100,9 +95,9 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
             includes.add(RUnitMatchers.symlink());
         }
 
-        Optional<IncludeFileName> includeFileName = AnnotationUtils.findAnnotation(method, IncludeFileName.class);
-        if (includeFileName.isPresent()) {
-            includes.add(RUnitMatchers.fileName(includeFileName.get().value()));
+        for (IncludeFileName includeFileName : AnnotationUtils.findRepeatableAnnotations(method,
+                IncludeFileName.class)) {
+            includes.add(RUnitMatchers.fileName(includeFileName.value()));
         }
 
         // No includes means include everything
@@ -124,9 +119,9 @@ abstract class AbstractExtension implements TestTemplateInvocationContextProvide
             excludes.add(RUnitMatchers.symlink());
         }
 
-        Optional<ExcludeFileName> excludeFileName = AnnotationUtils.findAnnotation(method, ExcludeFileName.class);
-        if (excludeFileName.isPresent()) {
-            excludes.add(RUnitMatchers.fileName(excludeFileName.get().value()));
+        for (ExcludeFileName excludeFileName : AnnotationUtils.findRepeatableAnnotations(method,
+                ExcludeFileName.class)) {
+            excludes.add(RUnitMatchers.fileName(excludeFileName.value()));
         }
 
         return Matchers.not(Matchers.anyOf(excludes));
