@@ -12,7 +12,6 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.extension.Extension;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
-import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.junit.platform.commons.util.AnnotationUtils;
 import org.opentest4j.TestAbortedException;
 
@@ -34,20 +33,12 @@ import io.kojan.runit.api.matcher.RUnitMatchers;
  * 
  * @author Mikolaj Izdebski
  */
-public class PackageTestExtension implements TestTemplateInvocationContextProvider {
+public class PackageTestExtension extends AbstractExtension {
 
     /**
      * Creates an instance of the JUnit extension.
      */
     public PackageTestExtension() {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean supportsTestTemplate(ExtensionContext context) {
-        return true;
     }
 
     private Matcher<RpmInfo> getIncludes(Method method) {
