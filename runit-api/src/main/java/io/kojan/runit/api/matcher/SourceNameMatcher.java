@@ -4,11 +4,10 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import org.hamcrest.Description;
-import org.hamcrest.TypeSafeMatcher;
 
 import io.kojan.javadeptools.rpm.RpmInfo;
 
-class SourceNameMatcher extends TypeSafeMatcher<RpmInfo> {
+class SourceNameMatcher extends AbstractPackageMatcher {
     private final Pattern pattern;
     private final Predicate<String> predicate;
 
@@ -31,11 +30,9 @@ class SourceNameMatcher extends TypeSafeMatcher<RpmInfo> {
 
     @Override
     protected void describeMismatchSafely(RpmInfo rpm, Description description) {
-        if (rpm.isSourcePackage()) {
-            description.appendText("source RPM ");
-            description.appendValue(rpm);
-        } else {
-            description.appendText("RPM of source ");
+        super.describeMismatchSafely(rpm, description);
+        if (!rpm.isSourcePackage()) {
+            description.appendText(" of source ");
             description.appendValue(rpm.getSourceRPM());
         }
     }

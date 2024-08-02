@@ -1,11 +1,10 @@
 package io.kojan.runit.api.matcher;
 
 import org.hamcrest.Description;
-import org.hamcrest.TypeSafeMatcher;
 
 import io.kojan.javadeptools.rpm.RpmInfo;
 
-class SourceRPMMatcher extends TypeSafeMatcher<RpmInfo> {
+class SourceRPMMatcher extends AbstractPackageMatcher {
     @Override
     protected boolean matchesSafely(RpmInfo rpm) {
         return rpm.isSourcePackage();
@@ -14,10 +13,5 @@ class SourceRPMMatcher extends TypeSafeMatcher<RpmInfo> {
     @Override
     public void describeTo(Description description) {
         description.appendText("source RPM");
-    }
-
-    @Override
-    protected void describeMismatchSafely(RpmInfo rpm, Description description) {
-        description.appendText("was binary RPM ").appendValue(rpm);
     }
 }
