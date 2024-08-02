@@ -1,9 +1,8 @@
 package io.kojan.runit.api.matcher;
 
-import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 
+import io.kojan.javadeptools.rpm.RpmFile;
 import io.kojan.javadeptools.rpm.RpmInfo;
 
 /**
@@ -17,26 +16,69 @@ public class RUnitMatchers {
     }
 
     /**
+     * Creates a Hamcrest {@link Matcher} that matches source and binary RPM
+     * packages which component name matching regular expression.
+     * 
+     * @param regex regular expression to match against package source name
+     * @return matcher for source name
+     */
+    public static Matcher<RpmInfo> sourceName(String regex) {
+        return new SourceNameMatcher(regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches binary RPM packages which
+     * name matching regular expression.
+     * 
+     * @param regex regular expression to match against package name
+     * @return matcher for binary name
+     */
+    public static Matcher<RpmInfo> binaryName(String regex) {
+        return new BinaryNameMatcher(regex);
+    }
+
+    /**
      * Creates a Hamcrest {@link Matcher} that matches source RPM packages.
      * 
      * @return matcher for source RPMs
      */
     public static Matcher<RpmInfo> sourceRPM() {
-        return new TypeSafeMatcher<>() {
-            @Override
-            protected boolean matchesSafely(RpmInfo rpm) {
-                return rpm.isSourcePackage();
-            }
+        return new SourceRPMMatcher();
+    }
 
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("source RPM");
-            }
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches binary RPM packages.
+     * 
+     * @return matcher for binary RPMs
+     */
+    public static Matcher<RpmInfo> binaryRPM() {
+        return new BinaryRPMMatcher();
+    }
 
-            @Override
-            protected void describeMismatchSafely(RpmInfo rpm, Description description) {
-                description.appendText("was binary RPM ").appendValue(rpm);
-            }
-        };
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches regular files.
+     * 
+     * @return matcher for regular files
+     */
+    public static Matcher<RpmFile> regularFile() {
+        return new RegularFileMatcher();
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches directories.
+     * 
+     * @return matcher for directories
+     */
+    public static Matcher<RpmFile> directory() {
+        return new RegularFileMatcher();
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches symbolic links.
+     * 
+     * @return matcher for symbolic links
+     */
+    public static Matcher<RpmFile> symlink() {
+        return new RegularFileMatcher();
     }
 }
