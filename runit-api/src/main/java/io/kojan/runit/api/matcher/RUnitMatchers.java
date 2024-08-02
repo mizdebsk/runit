@@ -83,13 +83,24 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that files which name matching regular
-     * expression.
+     * Creates a Hamcrest {@link Matcher} that matches files which name matching
+     * regular expression.
      * 
      * @param regex regular expression to match against file names
      * @return matcher for file names
      */
     public static Matcher<RpmFile> fileName(String regex) {
         return new FileNameMatcher(regex);
+    }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that matches files which specified mode.
+     * 
+     * @param mode file mode in the format of octal string, for example
+     *             {@code "644"}
+     * @return matcher for file mode
+     */
+    public static Matcher<RpmFile> mode(String mode) {
+        return new FileModeMatcher(mode);
     }
 }
