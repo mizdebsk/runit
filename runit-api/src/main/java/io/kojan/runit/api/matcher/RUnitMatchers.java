@@ -81,4 +81,15 @@ public class RUnitMatchers {
     public static Matcher<RpmFile> symlink() {
         return new RegularFileMatcher();
     }
+
+    /**
+     * Creates a Hamcrest {@link Matcher} that files which name matching regular
+     * expression.
+     * 
+     * @param regex regular expression to match against file names
+     * @return matcher for file names
+     */
+    public static Matcher<RpmFile> fileName(String regex) {
+        return new FileNameMatcher(regex);
+    }
 }
