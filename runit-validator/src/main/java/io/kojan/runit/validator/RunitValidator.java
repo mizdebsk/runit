@@ -24,7 +24,11 @@ class RunitValidator implements Validator {
     }
 
     @Override
-    public Result validate(Iterable<RpmPackage> rpmPackagesIterable, List<String> argsIgnored) {
+    public Result validate(Iterable<RpmPackage> rpmPackagesIterable, List<String> args) {
+        if (!args.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "RUnit validator does not support any arguments, but was called with: " + args);
+        }
         List<RpmPackage> rpmPackages = new ArrayList<>();
         rpmPackagesIterable.forEach(rpmPackages::add);
         RunitResult result = new RunitResult(test, rpmPackages);
