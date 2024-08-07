@@ -25,7 +25,7 @@ class RunitValidator implements Validator {
 
     @Override
     public Result validate(Iterable<RpmPackage> rpmPackagesIterable, List<String> args) {
-        if (!args.isEmpty()) {
+        if (args != null && !args.isEmpty()) {
             throw new IllegalArgumentException(
                     "RUnit validator does not support any arguments, but was called with: " + args);
         }
