@@ -1,9 +1,9 @@
-Name:		compound
-Version:	42
-Release:	1
-Summary:	A package
-License:	Apache-2.0
-URL:		https://kojan.io/
+Name:           compound
+Version:        42
+Release:        1
+Summary:        A package
+License:        Apache-2.0
+URL:            https://kojan.io/
 BuildArch:      noarch
 
 %description
