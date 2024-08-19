@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ abstract class AbstractValidatorTest {
     Path tmtTestData;
     Path artifactsDir;
 
-    Path resourcesDir = Paths.get("src/test/resources");
+    Path resourcesDir = Path.of("src/test/resources");
     Main main;
     List<String> args;
 

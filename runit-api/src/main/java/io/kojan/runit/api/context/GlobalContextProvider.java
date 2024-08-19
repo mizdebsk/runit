@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -101,7 +100,7 @@ public class GlobalContextProvider {
         }
         try {
             if (artifactsDir == null) {
-                artifactsDir = Paths.get(getArtifactsDir());
+                artifactsDir = Path.of(getArtifactsDir());
             }
             if (!Files.isDirectory(artifactsDir)) {
                 throw new RuntimeException("Not a directory: " + artifactsDir);

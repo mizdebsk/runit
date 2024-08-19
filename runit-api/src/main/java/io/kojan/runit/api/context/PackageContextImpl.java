@@ -3,7 +3,6 @@ package io.kojan.runit.api.context;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -85,11 +84,11 @@ class PackageContextImpl extends GlobalContextImpl implements PackageContext {
     private FileContext entryToFileContext(RpmArchiveInputStream stream, Map<Path, RpmFile> filesByPath,
             CpioArchiveEntry entry) {
         try {
-            Path path = Paths.get(entry.getName());
-            if (path.startsWith(Paths.get("."))) {
-                path = Paths.get(".").relativize(path);
+            Path path = Path.of(entry.getName());
+            if (path.startsWith(Path.of("."))) {
+                path = Path.of(".").relativize(path);
             }
-            path = Paths.get("/").resolve(path);
+            path = Path.of("/").resolve(path);
             RpmFile rpmFile = filesByPath.get(path);
             if (rpmFile == null) {
                 throw new IllegalStateException("null RpmFile for " + path + "; valid are: " + filesByPath.keySet());
@@ -107,9 +106,9 @@ class PackageContextImpl extends GlobalContextImpl implements PackageContext {
     }
 
     private Path rpmFilePath(RpmFile f) {
-        Path p = Paths.get(f.getName());
+        Path p = Path.of(f.getName());
         if (!p.isAbsolute()) {
-            p = Paths.get("/").resolve(p);
+            p = Path.of("/").resolve(p);
         }
         return p;
     }
