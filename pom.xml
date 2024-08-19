@@ -29,9 +29,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <module>runit-api</module>
     <module>runit-validator</module>
   </modules>
-  <properties>
-    <junitMinorVersion>10.3</junitMinorVersion>
-  </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -42,18 +39,18 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
       <dependency>
 	<groupId>org.junit.jupiter</groupId>
 	<artifactId>junit-jupiter-api</artifactId>
-	<version>5.${junitMinorVersion}</version>
+	<version>5.11.0</version>
       </dependency>
       <dependency>
 	<groupId>org.junit.jupiter</groupId>
 	<artifactId>junit-jupiter-engine</artifactId>
-	<version>5.${junitMinorVersion}</version>
+	<version>5.10.3</version>
 	<scope>runtime</scope>
       </dependency>
       <dependency>
 	<groupId>org.junit.platform</groupId>
 	<artifactId>junit-platform-launcher</artifactId>
-	<version>1.${junitMinorVersion}</version>
+	<version>1.10.3</version>
       </dependency>
       <dependency>
 	<groupId>org.hamcrest</groupId>
