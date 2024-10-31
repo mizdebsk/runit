@@ -1,24 +1,37 @@
+/*-
+ * Copyright (c) 2024 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.kojan.runit.api.matcher;
-
-import org.hamcrest.Matcher;
 
 import io.kojan.javadeptools.rpm.RpmFile;
 import io.kojan.javadeptools.rpm.RpmInfo;
+import org.hamcrest.Matcher;
 
 /**
- * A static class providing factory methods for creating Hamcrest
- * {@link Matcher}s related to RPM packages.
- * 
+ * A static class providing factory methods for creating Hamcrest {@link Matcher}s related to RPM
+ * packages.
+ *
  * @author Mikolaj Izdebski
  */
 public class RUnitMatchers {
-    private RUnitMatchers() {
-    }
+    private RUnitMatchers() {}
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches RPM packages which source
-     * name matching regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches RPM packages which source name matching
+     * regular expression.
+     *
      * @param regex regular expression to match against package source name
      * @return matcher for package source name
      */
@@ -27,9 +40,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches RPM packages which name
-     * matching regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches RPM packages which name matching regular
+     * expression.
+     *
      * @param regex regular expression to match against package name
      * @return matcher for package name
      */
@@ -39,7 +52,7 @@ public class RUnitMatchers {
 
     /**
      * Creates a Hamcrest {@link Matcher} that matches source RPM packages.
-     * 
+     *
      * @return matcher for source RPMs
      */
     public static Matcher<RpmInfo> sourceRPM() {
@@ -48,7 +61,7 @@ public class RUnitMatchers {
 
     /**
      * Creates a Hamcrest {@link Matcher} that matches binary RPM packages.
-     * 
+     *
      * @return matcher for binary RPMs
      */
     public static Matcher<RpmInfo> binaryRPM() {
@@ -57,7 +70,7 @@ public class RUnitMatchers {
 
     /**
      * Creates a Hamcrest {@link Matcher} that matches regular files.
-     * 
+     *
      * @return matcher for regular files
      */
     public static Matcher<RpmFile> regularFile() {
@@ -66,7 +79,7 @@ public class RUnitMatchers {
 
     /**
      * Creates a Hamcrest {@link Matcher} that matches directories.
-     * 
+     *
      * @return matcher for directories
      */
     public static Matcher<RpmFile> directory() {
@@ -75,7 +88,7 @@ public class RUnitMatchers {
 
     /**
      * Creates a Hamcrest {@link Matcher} that matches symbolic links.
-     * 
+     *
      * @return matcher for symbolic links
      */
     public static Matcher<RpmFile> symlink() {
@@ -83,9 +96,8 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches files which name matching
-     * regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches files which name matching regular expression.
+     *
      * @param regex regular expression to match against file names
      * @return matcher for file names
      */
@@ -95,9 +107,8 @@ public class RUnitMatchers {
 
     /**
      * Creates a Hamcrest {@link Matcher} that matches files which specified mode.
-     * 
-     * @param mode file mode in the format of octal string, for example
-     *             {@code "644"}
+     *
+     * @param mode file mode in the format of octal string, for example {@code "644"}
      * @return matcher for file mode
      */
     public static Matcher<RpmFile> mode(String mode) {
@@ -105,9 +116,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with Provides
-     * matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with Provides matching specified
+     * regular expression.
+     *
      * @param regex regular expression to match against package Provides
      * @return matcher for package Provides
      */
@@ -116,9 +127,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with Requires
-     * matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with Requires matching specified
+     * regular expression.
+     *
      * @param regex regular expression to match against package Requires
      * @return matcher for package Requires
      */
@@ -127,9 +138,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with Conflicts
-     * matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with Conflicts matching specified
+     * regular expression.
+     *
      * @param regex regular expression to match against package Conflicts
      * @return matcher for package Conflicts
      */
@@ -138,9 +149,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with Obsoletes
-     * matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with Obsoletes matching specified
+     * regular expression.
+     *
      * @param regex regular expression to match against package Obsoletes
      * @return matcher for package Obsoletes
      */
@@ -149,9 +160,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with Recommends
-     * matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with Recommends matching specified
+     * regular expression.
+     *
      * @param regex regular expression to match against package Recommends
      * @return matcher for package Recommends
      */
@@ -160,9 +171,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with Suggests
-     * matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with Suggests matching specified
+     * regular expression.
+     *
      * @param regex regular expression to match against package Suggests
      * @return matcher for package Suggests
      */
@@ -171,9 +182,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with Supplements
-     * matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with Supplements matching specified
+     * regular expression.
+     *
      * @param regex regular expression to match against package Supplements
      * @return matcher for package Supplements
      */
@@ -182,9 +193,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with Enhances
-     * matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with Enhances matching specified
+     * regular expression.
+     *
      * @param regex regular expression to match against package Enhances
      * @return matcher for package Enhances
      */
@@ -193,9 +204,9 @@ public class RUnitMatchers {
     }
 
     /**
-     * Creates a Hamcrest {@link Matcher} that matches packages with
-     * OrderWithRequires matching specified regular expression.
-     * 
+     * Creates a Hamcrest {@link Matcher} that matches packages with OrderWithRequires matching
+     * specified regular expression.
+     *
      * @param regex regular expression to match against package OrderWithRequires
      * @return matcher for package OrderWithRequires
      */

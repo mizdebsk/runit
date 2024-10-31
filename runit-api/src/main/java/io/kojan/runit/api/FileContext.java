@@ -1,35 +1,48 @@
+/*-
+ * Copyright (c) 2024 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.kojan.runit.api;
 
-import java.nio.file.Path;
-
 import io.kojan.javadeptools.rpm.RpmFile;
+import java.nio.file.Path;
 
 /**
  * Context in which file tests annotated with {@link FileTest} are ran.
- * <p>
- * Specifies the particular file contained in RPM package on which file tests
- * are ran.
- * 
+ *
+ * <p>Specifies the particular file contained in RPM package on which file tests are ran.
+ *
  * @author Mikolaj Izdebski
  */
 public interface FileContext extends PackageContext {
     /**
      * Get path to the particular file on which file test is ran.
-     * 
+     *
      * @return path to file inside RPM package
      */
     Path getFilePath();
 
     /**
      * Get the particular file on which file test is ran.
-     * 
+     *
      * @return the file
      */
     RpmFile getRpmFile();
 
     /**
      * Get content of the particular file on which file test is ran.
-     * 
+     *
      * @return byte content of the file
      */
     byte[] getFileContent();

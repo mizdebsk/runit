@@ -1,3 +1,18 @@
+/*-
+ * Copyright (c) 2024 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.kojan.runit.validator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,16 +24,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.fedoraproject.javapackages.validator.Main;
 import org.fedoraproject.javapackages.validator.MainTmt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.io.CleanupMode;
 import org.junit.jupiter.api.io.TempDir;
 
+/**
+ * @author Mikolaj Izdebski
+ */
 abstract class AbstractValidatorTest {
     @TempDir(cleanup = CleanupMode.ON_SUCCESS)
     Path tempDir;
+
     Path tmtTree;
     Path tmtTestData;
     Path artifactsDir;
@@ -49,7 +67,8 @@ abstract class AbstractValidatorTest {
     }
 
     void setupDiscovery(String namespace, String classNamePattern) {
-        TestValidatorFactory.ds = new TestRunnerFactory().createDiscoveryService(namespace, classNamePattern);
+        TestValidatorFactory.ds =
+                new TestRunnerFactory().createDiscoveryService(namespace, classNamePattern);
     }
 
     void runJPV(int expRc) throws Exception {
@@ -63,7 +82,9 @@ abstract class AbstractValidatorTest {
 
     void assertFiles(String... files) {
         for (String file : files) {
-            assertTrue(Files.isRegularFile(tmtTestData.resolve(file)), "File " + file + " should exist");
+            assertTrue(
+                    Files.isRegularFile(tmtTestData.resolve(file)),
+                    "File " + file + " should exist");
         }
     }
 

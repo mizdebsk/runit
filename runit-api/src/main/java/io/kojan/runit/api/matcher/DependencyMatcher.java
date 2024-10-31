@@ -1,22 +1,39 @@
+/*-
+ * Copyright (c) 2024 Red Hat, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.kojan.runit.api.matcher;
 
+import io.kojan.javadeptools.rpm.RpmDependency;
+import io.kojan.javadeptools.rpm.RpmInfo;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
-
 import org.hamcrest.Description;
 
-import io.kojan.javadeptools.rpm.RpmDependency;
-import io.kojan.javadeptools.rpm.RpmInfo;
-
+/**
+ * @author Mikolaj Izdebski
+ */
 class DependencyMatcher extends AbstractPackageMatcher {
     private final String kind;
     private final Function<RpmInfo, List<RpmDependency>> getter;
     private final Pattern pattern;
     private final Predicate<List<RpmDependency>> predicate;
 
-    public DependencyMatcher(String kind, Function<RpmInfo, List<RpmDependency>> getter, String regex) {
+    public DependencyMatcher(
+            String kind, Function<RpmInfo, List<RpmDependency>> getter, String regex) {
         this.kind = kind;
         this.getter = getter;
         pattern = Pattern.compile(regex);
