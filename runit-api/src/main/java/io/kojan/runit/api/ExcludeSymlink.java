@@ -23,6 +23,8 @@ import java.lang.annotation.Target;
 /**
  * When put on RPM file test template method annotated with {@link FileTest} it makes test template
  * exclude symbolic links.
+ *
+ * @author Mikolaj Izdebski
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

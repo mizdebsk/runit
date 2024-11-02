@@ -20,7 +20,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/** Container annotation to hold any number of {@link ExcludeBinary} annotations, zero or more. */
+/**
+ * Container annotation to hold any number of {@link ExcludeBinary} annotations, zero or more.
+ *
+ * @author Mikolaj Izdebski
+ */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ExcludeBinaries {

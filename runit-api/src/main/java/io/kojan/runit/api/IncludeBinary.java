@@ -25,6 +25,8 @@ import java.lang.annotation.Target;
  * When put on RPM package test template method annotated with {@link PackageTest} or {@link
  * FileTest} it makes test template include binary packages with names matching specified regular
  * expression, or all binary packages if regular expression is not specified.
+ *
+ * @author Mikolaj Izdebski
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

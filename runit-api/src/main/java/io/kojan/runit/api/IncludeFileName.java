@@ -24,6 +24,8 @@ import java.lang.annotation.Target;
 /**
  * When put on RPM file test template method annotated with {@link FileTest} it makes test template
  * include files with names matching specified regular expression.
+ *
+ * @author Mikolaj Izdebski
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
