@@ -15,6 +15,7 @@
  */
 package io.kojan.runit.validator;
 
+import org.fedoraproject.javapackages.validator.spi.Decorated;
 import org.hamcrest.BaseDescription;
 import org.hamcrest.Description;
 
@@ -49,7 +50,7 @@ class DecoratedDescription extends BaseDescription {
         if (sb != null) {
             sb.append(s);
         } else {
-            log.append(s);
+            log.append(Decorated.plain(s));
         }
     }
 
@@ -58,7 +59,7 @@ class DecoratedDescription extends BaseDescription {
         if (sb != null) {
             sb.append(c);
         } else {
-            log.append(c);
+            log.append(Decorated.plain(c));
         }
     }
 }
