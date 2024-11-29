@@ -19,6 +19,7 @@ import io.kojan.javadeptools.rpm.RpmPackage;
 import io.kojan.runit.api.GlobalContext;
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public class GlobalContextProvider {
                 throw new RuntimeException("Not a directory: " + artifactsDir);
             }
             List<Path> rpmPaths =
-                    Files.walk(artifactsDir) //
+                    Files.walk(artifactsDir, FileVisitOption.FOLLOW_LINKS) //
                             .filter(Files::isRegularFile) //
                             .filter(p -> p.getFileName().toString().endsWith(".rpm")) //
                             .collect(Collectors.toList());
