@@ -17,7 +17,7 @@ package mytests.simple;
 
 import static io.kojan.runit.api.RUnit.assertThat;
 import static io.kojan.runit.api.RUnit.assumeThat;
-import static io.kojan.runit.api.RUnit.sourceRPM;
+import static io.kojan.runit.api.matcher.RUnitMatchers.sourceRPM;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 

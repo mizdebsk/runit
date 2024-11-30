@@ -69,7 +69,9 @@ public class RUnit {
      * Creates a Hamcrest {@link Matcher} that matches source RPM packages.
      *
      * @return matcher for source RPMs
+     * @deprecated use {@link RUnitMatchers#sourceRPM()} instead
      */
+    @Deprecated
     public static Matcher<RpmInfo> sourceRPM() {
         return RUnitMatchers.sourceRPM();
     }
