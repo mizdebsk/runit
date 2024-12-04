@@ -23,6 +23,13 @@
   </parent>
   <artifactId>runit</artifactId>
   <version>1.0.1-SNAPSHOT</version>
+  <name>RUnit</name>
+  <description>A JUnit 5 Jupiter extension for testing RPM 4 packages</description>
+  <url>https://github.com/mizdebsk/runit</url>
+  <inceptionYear>2023</inceptionYear>
+  <scm>
+    <url>https://github.com/mizdebsk/runit.git</url>
+  </scm>
   <packaging>pom</packaging>
   <modules>
     <module>runit-api</module>
