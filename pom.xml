@@ -79,7 +79,7 @@
       <dependency>
         <groupId>io.kojan</groupId>
         <artifactId>jpv-core</artifactId>
-        <version>ba5d4df</version>
+        <version>061db5d</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
